@@ -1,0 +1,27 @@
+{
+  "name": "assignment1",
+  "version": "1.0.0",
+  "description": "Assignment 1",
+  "main": "server.js",
+  "scripts": {
+    "start": "nodemon -w server -e js,graphql server/server.js",
+    "compile": "babel src --out-dir public --presets=@babel/preset-react",
+    "watch": "babel src --out-dir public --watch --verbose --presets=@babel/preset-react",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Bishal Dhakal",
+  "license": "ISC",
+  "dependencies": {
+    "apollo-server-express": "^3.13.0",
+    "express": "^4.18.2",
+    "graphql": "^16.8.1",
+    "mongodb": "^6.3.0",
+    "mongoose": "^8.1.3",
+    "nodemon": "^3.0.3"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.23.9",
+    "@babel/core": "^7.23.9",
+    "@babel/preset-react": "^7.23.3"
+  }
+}

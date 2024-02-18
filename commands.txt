@@ -1,0 +1,8 @@
+npm init
+npm install express
+npm install nodemon
+
+npm install --save-dev @babel/core@7 @babel/cli@7
+npm install --save-dev @babel/preset-react@7
+
+

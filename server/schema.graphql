@@ -1,0 +1,67 @@
+# Define custom scalar for representing dates
+scalar GraphQLDate
+
+# Define the possible employee types
+enum EmployeeType {
+  FullTime
+  PartTime
+  Contract
+  Seasonal
+}
+
+# Define the possible employee titles
+enum Title {
+  Employee
+  Manager
+  Director
+  VP
+}
+
+# Define the possible employee departments
+enum Department {
+  IT
+  Marketing
+  HR
+  Engineering
+}
+
+# Define the possible employee statuses
+enum CurrentStatus {
+  Working
+  Retired
+}
+
+# Employee object type
+type Employee {
+  _id: ID!
+  FirstName: String!
+  LastName: String!
+  Age: Int!
+  DateOfJoining: GraphQLDate!
+  Title: Title!
+  Department: Department!
+  EmployeeType: EmployeeType!
+  CurrentStatus: CurrentStatus!
+}
+
+# Input type for creating an employee
+input EmployeeInput {
+  FirstName: String!
+  LastName: String!
+  Age: Int!
+  Title: Title!
+  Department: Department!
+  EmployeeType: EmployeeType!
+  DateOfJoining: GraphQLDate!
+  CurrentStatus: CurrentStatus!
+}
+
+# Query type
+type Query {
+  employeeList: [Employee!]!
+}
+
+# Mutation type
+type Mutation {
+  employeeAdd(employee: EmployeeInput!): Employee!
+}
