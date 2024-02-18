@@ -145,7 +145,7 @@ class EmployeeCreate extends React.Component {
       title: "",
       department: "",
       employeeType: "",
-      // Add more state variables for other input fields
+      currentStatus: "Working",
     };
   }
 
@@ -155,12 +155,55 @@ class EmployeeCreate extends React.Component {
     });
   };
 
-  handleSubmit = (e) => {
+  handleSubmit = async (e) => {
     e.preventDefault();
-    // You need to implement the GraphQL API call for creating an employee here
-    // Use this.state to get the form data
-    // Handle validation and display errors as needed
-    console.log("Form submitted:", this.state);
+
+    // Destructure form values from state
+    const {
+      firstName,
+      lastName,
+      age,
+      dateOfJoining,
+      title,
+      department,
+      employeeType,
+      currentStatus,
+    } = this.state;
+
+    // GraphQL mutation
+    const mutation = `
+      mutation {
+        employeeAdd(employee: {
+          FirstName: "${firstName}",
+          LastName: "${lastName}",
+          Age: ${parseInt(age, 10)},
+          DateOfJoining: "${dateOfJoining}",
+          Title: ${title},
+          Department: ${department},
+          EmployeeType: ${employeeType},
+          CurrentStatus: ${currentStatus}
+        }) {
+          _id
+          FirstName
+          LastName
+          Age
+          Title
+          Department
+          EmployeeType
+          DateOfJoining
+          CurrentStatus
+        }
+      }
+    `;
+
+    try {
+      const response = await graphQLFetch(mutation);
+      console.log("Employee added Successfully:", response.employeeAdd);
+      window.location.reload();
+      alert("Employee added Successfully");
+    } catch (error) {
+      console.error("Error adding employee:", error);
+    }
   };
 
   render() {
